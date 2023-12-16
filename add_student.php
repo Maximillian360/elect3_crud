@@ -13,20 +13,8 @@
                 VALUES (NULL, '$lastname', '$firstname', '$prelim', '$midterm', '$finals', '$final_grade')";
         $result = mysqli_query($conn, $sql);
 
-//TODO: MAKE THIS CUE BETTER
-        if ($result) {
-            echo "Record added successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
     }
 ?>
-
-
-
-
-
-
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +50,29 @@
 
             // Update the value of the average number box
             document.getElementById('finals_grade').value = average.toFixed(2);
+
+
+
         }
+    </script>
+
+    <script>
+        function checkFormValidity() {
+            var firstName = document.getElementById('first_name').value;
+            var lastName = document.getElementById('last_name').value;
+            var prelims = parseFloat(document.getElementById('prelims').value);
+            var midterms = parseFloat(document.getElementById('midterms').value);
+            var finals = parseFloat(document.getElementById('finals').value);
+
+            if (firstName.trim() === '' || lastName.trim() === '' || isNaN(prelims) || isNaN(midterms) || isNaN(finals)) {
+                // Disable the "Save" button if any field is empty or contains a non-numeric value
+                document.getElementById('submit').disabled = true;
+            } else {
+                // Enable the "Save" button if all fields are filled
+                document.getElementById('submit').disabled = false;
+            }
+        }
+
     </script>
 
 
@@ -74,12 +84,24 @@
         <a class="navbar-brand text-white" href="#">PHP MYSQL CRUD</a>
     </nav>
     <div class="container">
+        <?php
+            if(isset($_POST['submit'])) {
+                $msg = "New record added";
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        ' . $msg . '
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+            }
+            // Clear the session variable to avoid showing the message on subsequent requests
+        ?>
+
+
         <div class="text-center mb-4">
              <h3>Add Student</h3>
         </div>
 
         <div class="container d-flex justify-content-center">
-            <form action="" method="post" style="width:65vw; min-width:300px;">
+            <form action="" method="post" style="width:65vw; min-width:300px;" oninput="checkFormValidity()">
                 <div class="row mb-3">
                     <div class="col">
                         <label for="first_name" class="form-label">First Name</label>
@@ -95,17 +117,17 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="prelims" class="form-label">Prelims</label>
-                        <input type="number" class="form-control" id="prelims" name="prelims" min="0" max="100.00" step="0.01" oninput="updateAverage()" value="0">
+                        <input type="number" class="form-control" id="prelims" name="prelims" min="0" max="100.00" step="0.01" oninput="updateAverage()">
                     </div>
 
                     <div class="col">
                         <label for="midterms" class="form-label">Midterms</label>
-                        <input type="number" class="form-control" id="midterms" name="midterms" min="0" max="100.00" step="0.01" oninput="updateAverage()" value="0">
+                        <input type="number" class="form-control" id="midterms" name="midterms" min="0" max="100.00" step="0.01" oninput="updateAverage()">
                     </div>
 
                     <div class="col">
                         <label for="finals" class="form-label">Finals</label>
-                        <input type="number" class="form-control" id="finals" name="finals" min="0" max="100.00" step="0.01" oninput="updateAverage()" value="0">
+                        <input type="number" class="form-control" id="finals" name="finals" min="0" max="100.00" step="0.01" oninput="updateAverage()">
                     </div>
 
                     <div class="col">
@@ -113,8 +135,8 @@
                         <input type="number" class="form-control" id="finals_grade" name="finals_grade" min="0" max="100.00" value="0" readonly>
                     </div>
                 </div>
-                    <button type="submit" class="btn btn-success" name="submit">Save</button>
-<!--                    <a href="index.php" class="btn btn-danger">Home</a>-->
+                    <button type="submit" class="btn btn-success" id="submit" name="submit" disabled>Save</button>
+                    <a href="index.php" class="btn btn-danger">Home</a>
                 <div
             </form>
         </div>
@@ -130,7 +152,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
-
 
 <?php
 
