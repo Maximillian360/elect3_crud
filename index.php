@@ -33,7 +33,17 @@
     </nav>
 
     <div class="container mt-5">
+        <?php
+        if(isset($_GET['msg'])){
+            $msg = $_GET['msg'];
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        ' . $msg . '
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+        }
+        ?>
         <h3>Student Records</h3>
+        <a href="add_student.php" class="btn btn-dark mb-5 mt-3" >New</a>
         <table class="table">
             <thead>
             <tr>

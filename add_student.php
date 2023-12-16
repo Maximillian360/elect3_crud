@@ -2,8 +2,8 @@
     global $conn;
     include "db_conn.php";
     if(isset($_POST['submit'])){
-        $firstname = $_POST['first_name'];
-        $lastname = $_POST['last_name'];
+        $firstname = mysqli_real_escape_string($conn, $_POST['first_name']);
+        $lastname = mysqli_real_escape_string($conn, $_POST['last_name']);
         $prelim = floatval($_POST['prelims']);
         $midterm = floatval($_POST['midterms']);
         $finals = floatval($_POST['finals']);
@@ -97,7 +97,7 @@
 
 
         <div class="text-center mb-4">
-             <h3>Add Student</h3>
+             <h3>Add Student Record</h3>
         </div>
 
         <div class="container d-flex justify-content-center">
