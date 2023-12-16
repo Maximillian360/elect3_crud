@@ -1,5 +1,4 @@
 
-
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -24,6 +23,23 @@
         </style>
         <title>Student Records</title>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var deleteLinks = document.getElementsByClassName('delete-link');
+
+                Array.from(deleteLinks).forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        var studid = this.getAttribute('data-studid');
+                        var confirmDelete = confirm('Are you sure you want to delete this record?');
+
+                        if (confirmDelete) {
+                            window.location.href = 'delete.php?studid=' + studid;
+                        }
+                    });
+                });
+            });
+        </script>
+
     </head>
 
     <body>
@@ -34,13 +50,12 @@
 
     <div class="container mt-5">
         <?php
-        if(isset($_GET['msg'])){
-            $msg = $_GET['msg'];
-            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-        ' . $msg . '
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';
-        }
+            if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["msg"])) {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            ' . $_GET["msg"] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+            }
         ?>
         <h3>Student Records</h3>
         <a href="add_student.php" class="btn btn-dark mb-5 mt-3" >New</a>
@@ -75,7 +90,7 @@
                             <td> <?php echo $row['final_grade'] ?></td>
                             <td>
                                 <a href="edit.php?studid=<?php echo $row["studid"] ?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-                                <a href="delete.php?studid=<?php echo $row["studid"] ?>" class="link-dark"><i class="fa-solid fa-trash fs-5"></i></a>
+                                <a href="javascript:void(0);" class="link-dark delete-link" data-studid="<?php echo $row["studid"] ?>"><i class="fa-solid fa-trash fs-5"></i></a>
                             </td>
                         </tr>
 

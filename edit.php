@@ -28,14 +28,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <style>
             body {
-                background-color: #f8f9fa; /* Set a light background color */
+                background-color: #f8f9fa;
             }
-
             .navbar {
-                background-color: #007bff; /* Set the navbar background color */
-                color: #ffffff; /* Set the text color */
+                background-color: #007bff;
+                color: #ffffff;
                 font-weight: bold;
-                box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+                box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
             }
         </style>
 
@@ -45,16 +44,8 @@
                 var prelimGrades = parseFloat(document.getElementById('prelims').value) || 0;
                 var midtermGrades = parseFloat(document.getElementById('midterms').value) || 0;
                 var finalGrades = parseFloat(document.getElementById('finals').value) || 0;
-
-                // Calculate the average for the first three numbers
                 var average = (prelimGrades + midtermGrades + finalGrades) / 3;
-                // Calculate the average
-
-                // Update the value of the average number box
                 document.getElementById('finals_grade').value = average.toFixed(2);
-
-
-
             }
         </script>
 
@@ -80,28 +71,14 @@
         <a class="navbar-brand text-white" href="#">PHP MYSQL CRUD</a>
     </nav>
     <div class="container">
-<!--        --><?php
-//            if(isset($_POST['submit'])) {
-//                $msg = "Record Updated";
-//                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-//        ' . $msg . '
-//        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-//        </div>';
-//            }
-//        ?>
-
-
         <div class="text-center mb-4">
             <h3>Edit Student Record</h3>
         </div>
-
         <?php
-
         $sql = "SELECT * FROM students WHERE studid = $id LIMIT 1";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         ?>
-
         <div class="container d-flex justify-content-center">
             <form action="" method="post" style="width:65vw; min-width:300px;" oninput="checkFormValidity()">
                 <div class="row mb-3">
