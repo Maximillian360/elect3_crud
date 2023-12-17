@@ -111,9 +111,6 @@
                 $comparison = $_GET['comparison'];
                 $field = $_GET['field'];
 
-
-
-                // Modify the SQL query based on the search parameters
                 $sql .= " WHERE ";
 
                 switch ($comparison) {

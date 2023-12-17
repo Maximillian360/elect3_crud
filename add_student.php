@@ -92,7 +92,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
             }
-            // Clear the session variable to avoid showing the message on subsequent requests
         ?>
 
 
