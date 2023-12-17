@@ -1,5 +1,4 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -59,6 +58,7 @@
         ?>
         <h3>Student Records</h3>
         <a href="add_student.php" class="btn btn-dark mb-5 mt-3" >New</a>
+        <a href="search.php" class="btn btn-dark mb-5 mt-3">Search</a>
         <table class="table">
             <thead>
             <tr>
@@ -93,12 +93,9 @@
                                 <a href="javascript:void(0);" class="link-dark delete-link" data-studid="<?php echo $row["studid"] ?>"><i class="fa-solid fa-trash fs-5"></i></a>
                             </td>
                         </tr>
-
                         <?php
                 }
-
             ?>
-
             </tbody>
         </table>
     </div>
@@ -113,7 +110,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
     </html>
-
 
 <?php
 
