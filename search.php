@@ -84,6 +84,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary mb-5 mt-3">Search</button>
+        <a href="index.php" class="btn btn-danger mb-5 mt-3">Home</a>
     </form>
 
     <table class="table">
